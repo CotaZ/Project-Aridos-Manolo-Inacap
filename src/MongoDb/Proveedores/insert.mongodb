@@ -1,0 +1,13 @@
+use("Aridos_Manolo")
+
+db.users.insertOne({
+    name: "Leonel",
+    last_name: "Acosta",
+    email: "leonel.acosta@aridosmanolo.com",
+    password: "PasswordSegura123456",
+    role: "admin",
+    isSingle: true,
+    age: 20,
+    social_accounts: ['instagram', 'facebook','x','tiktok'],
+    createdAt: new Date() // Establece la marca de tiempo actual.
+})

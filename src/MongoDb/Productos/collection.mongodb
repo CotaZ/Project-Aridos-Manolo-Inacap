@@ -1,0 +1,73 @@
+use("Aridos_Manolo")
+
+db.products.drop()
+
+db.createCollection("products", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['product', 'brand', 'quantity','createdAt', 'measurements','weight'],
+            additionalProperties: true,
+            properties: {
+                product: {
+                    bsonType: 'string',
+                    description: "'product' must be a string and is required"
+                },
+                brand: {
+                    bsonType: 'string',
+                    description: "'brand' must be a string and is required"
+                },
+                quantity: {
+                    bsonType: 'number',
+                    minimum: 1,
+                    maximum: 1000000,
+                    description: "'quantity' must be a number and is required"
+                },
+                isSingle: {
+                    bsonType: 'bool'
+                },
+                createdAt: {
+                    bsonType: 'date',
+                    description: "'createdAt' must be a date and is required"
+                },
+                measurements: {
+                    bsonType: 'object',
+                    description: "'measurements' must be an object and is required",
+                    properties: {
+                        length: {
+                            bsonType: 'number',
+                            description: "'length' must be a number (e.g., 20)"
+                        },
+                        width: {
+                            bsonType: 'number',
+                            description: "'width' must be a number (e.g., 20)"
+                        },
+                        unit: {
+                            bsonType: 'string',
+                            maxLength: 5,
+                            minLength: 2,
+                            description: "'unit' must be a string (e.g., 'cm')"
+                        }
+                    }
+                },
+                weight: {
+                    bsonType: 'object',
+                    description: "'weight' must be an object",
+                    properties: {
+                        qty: {
+                            bsonType: 'number',
+                            minimum: 1,
+                            maximum: 10000,
+                            description: "'qty' must be a number (e.g., 20)"
+                        },
+                        unit: {
+                            bsonType: 'string',
+                            minLength: 2,
+                            description: "'unit' must be a string (e.g., 'cm')"
+                        }
+                    }
+                }
+            }
+        }
+    }
+})

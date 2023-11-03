@@ -1,0 +1,3 @@
+use("Aridos_Manolo")
+
+db.products.find()

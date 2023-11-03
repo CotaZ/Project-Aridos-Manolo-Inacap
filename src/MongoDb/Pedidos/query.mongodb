@@ -1,0 +1,5 @@
+use("Aridos_Manolo")
+
+db.users.find()
+
+//modelo de datos

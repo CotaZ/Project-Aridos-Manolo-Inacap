@@ -1,0 +1,18 @@
+use("Aridos_Manolo")
+
+db.products.insertOne({
+    product: 'Cemento',
+    brand: 'Melon',
+    quantity: 10,
+    isSingle: true,
+    createdAt: new Date(),
+    measurements: {
+        length: 47.5,
+        width: 70,
+        unit: 'cm'
+    },
+    weight: {
+        qty: 45,
+        unit: 'kg'
+    }
+})

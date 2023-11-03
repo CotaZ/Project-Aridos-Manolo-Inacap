@@ -1,0 +1,113 @@
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'register_users',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['name', 'last_name', 'email', 'date_of_birth', 'age', 'expiration_date', 'status', 'country'],
+            additionalProperties: true,
+            properties: {
+                name: {
+                    bsonType: 'string',
+                    description: "'name' must be a string and is required"
+                },
+                last_name: {
+                    bsonType: 'string',
+                    description: "'lastname' must be a string and is required"
+                },
+                email: {
+                    bsonType: 'string',
+                    description: "'email' must be a string and is required",
+                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                },
+                password: {
+                    bsonType: 'string',
+                    description: "'password' must be a string and is required",
+                    pattern: "^.{16,40}$"
+                },
+                age: {
+                    bsonType: 'number',
+                    minimum: 18,
+                    maximum: 99
+                },
+                isSingle: {
+                    bsonType: 'bool'
+                },
+                createdAt: {
+                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    description: "'createdAt' must be a date and is required"
+                },
+                status: {
+                    enum: ['active', 'inactive']
+                },
+                country: {
+                    bsonType: 'string',
+                    description: "'lastname' must be a string and is required"
+                },
+                expiration_date: {
+                    bsonType: 'date', // insert{"expiration_date": ISODate("2023-12-31T00:00:00Z")
+                    description: "'expiration_date' must be a date and is required"
+                },
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'users_roles',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: [],
+            additionalProperties: true,
+            properties: {}
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'sexs',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ["sex"],
+            additionalProperties: true,
+            properties: {
+                sex: {
+                    enum: ['male', 'female']
+                },
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'roles',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: [],
+            additionalProperties: true,
+            properties: { 
+                role: {
+                    enum: ['admin', 'customer', 'developer']
+                },
+            }
+        }
+    }
+})
