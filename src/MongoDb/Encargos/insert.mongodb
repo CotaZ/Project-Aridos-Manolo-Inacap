@@ -1,13 +1,13 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.requests.insertOne({
+    id_request: new ObjectId(),
+    request: "Pedido de arena", 
+    date: "2024-11-05", 
+    time: "10:00 AM", 
+    cost: 500, 
+    id_supplier: ObjectId("6548125a9fe604950caa6675"), 
+    id_product: ObjectId("65480f847ad8f0986b3a19f8"), 
+    id_truck: ObjectId("65480e0f04395c2141aadb3a"),
+    createdAt: new Date(),
 })

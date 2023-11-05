@@ -1,5 +1,5 @@
 use("Aridos_Manolo")
 
-db.users.find()
+db.orders.find()
 
 //modelo de datos

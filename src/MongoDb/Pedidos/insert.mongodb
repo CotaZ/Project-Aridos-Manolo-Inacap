@@ -1,13 +1,13 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.orders.insertOne({
+    id_order: new ObjectId(),
+    order: "Sample Order",
+    order_date: ISODate("2023-11-05"),
+    order_time: "10:00 AM",
+    order_status: "pending",
+    revenue: 100.50,
+    id_product: ObjectId("65480f847ad8f0986b3a19f9"),
+    id_customer: ObjectId(),
+    createdAt: new Date()
 })

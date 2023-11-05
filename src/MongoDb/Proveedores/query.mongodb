@@ -1,5 +1,7 @@
 use("Aridos_Manolo")
 
-db.users.find()
+db.trucks.find()
 
-//modelo de datos
+use("Aridos_Manolo")
+
+db.suppliers.find()

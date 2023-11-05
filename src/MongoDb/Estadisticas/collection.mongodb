@@ -16,14 +16,10 @@ db.createCollection("stadistics", {
                 id_income: {
                     bsonType: 'objectId',
                     description: "'id_income' must be a valid ObjectId and is required",
-                    foreignField: 'id_income',
-                    ref: 'income'
                 },
                 id_expense: {
                     bsonType: 'objectId',
                     description: "'id_expense' must be a valid ObjectId and is required",
-                    foreignField: 'id_expense',
-                    ref: 'expenses'
                 }
             }
         }
@@ -52,8 +48,6 @@ db.createCollection("income", {
                 id_customer: {
                     bsonType: 'objectId',
                     description: "'id_customer' must be a valid ObjectId and is required",
-                    foreignField: 'id_customer',
-                    ref: 'customers'
                 },
             }
         }
@@ -68,22 +62,20 @@ db.createCollection("expenses", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['id_expense', 'id_createdAt', 'id_supplier'],
+            required: ['id_expense', 'createdAt', 'id_supplier'],
             additionalProperties: true,
             properties: {
-                id_stadistic: {
+                id_expense: {
                     bsonType: 'objectId',
-                    description: "'id_stadistic' must be a string and is required"
+                    description: "'id_expense' must be a string and is required"
                 },
                 createdAt: {
-                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    bsonType: 'date',
                     description: "'createdAt' must be a date and is required"
                 },
                 id_supplier: {
                     bsonType: 'objectId',
                     description: "'id_supplier' must be a valid ObjectId and is required",
-                    foreignField: 'id_supplier',
-                    ref: 'suppliers'
                 }
             }
         }

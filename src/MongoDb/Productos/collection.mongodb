@@ -7,7 +7,6 @@ db.createCollection("products", {
         $jsonSchema: {
             bsonType: 'object',
             required: ['id_product','name', 'description', 'price', 'qty', 'measurement', 'weight', 'type_of_weight'],
-            required: ['','name', 'description', 'price', 'qty', 'measurement', 'weight', 'type_of_weight'],
             additionalProperties: true,
             properties: {
                 id_product: {
@@ -46,10 +45,10 @@ db.createCollection("products", {
                     description: "'measurement' must be a string and is required"
                 },
                 weight: {
-                    bsonType: 'string',
+                    bsonType: 'number',
                     description: "'measurement' must be a string and is required"
                 },
-                weight: {
+                type_of_weight: {
                     enum: ['kg', 'lb', 'gr', 'g', 'oz'],
                     description: "'weight' must be a string and is required"
                 }

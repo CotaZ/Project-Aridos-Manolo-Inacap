@@ -33,20 +33,14 @@ db.runCommand({
                 id_supplier: {
                     bsonType: 'objectId',
                     description: "'id_supplier' must be a valid ObjectId and is required",
-                    foreignField: 'id_supplier',
-                    ref: 'suppliers'
                 },
                 id_product: {
                     bsonType: 'objectId',
                     description: "'id_product' must be a valid ObjectId and is required",
-                    foreignField: 'id_product',
-                    ref: 'products'
                 },
                 id_truck: {
                     bsonType: 'objectId',
                     description: "'id_truck' must be a valid ObjectId and is required",
-                    foreignField: 'id_truck',
-                    ref: 'trucks'
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.

@@ -3,7 +3,7 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'Suppliers',
+    collMod: 'suppliers',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
@@ -27,7 +27,6 @@ db.runCommand({
                     bsonType: 'string',
                     description: "'email' must be a string and is required",
                     pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
-                },
                 },
                 age: {
                     bsonType: 'number',
@@ -61,16 +60,13 @@ db.runCommand({
                 id_truck: {
                     bsonType: 'objectId',
                     description: "'id_truck' must be a valid ObjectId and is required",
-                    foreignField: 'id_truck',
-                    ref: 'trucks'
                 },
                 id_product: {
                     bsonType: 'objectId',
                     description: "'id_product' must be a valid ObjectId and is required",
-                    foreignField: 'id_product',
-                    ref: 'products'
                 }
             }
+        }  
     }
 })
 
@@ -78,7 +74,7 @@ use("Aridos_Manolo")
 
 db.getCollectionInfos()
 db.runCommand({
-    collMod: 'Trucks',
+    collMod: 'trucks',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
@@ -88,7 +84,6 @@ db.runCommand({
                 id_truck: {
                     bsonType: 'objectId',
                     description: "'id_truck' must be a valid ObjectId and is required"
-
                 },
                 brand_name: {
                     bsonType: 'string',

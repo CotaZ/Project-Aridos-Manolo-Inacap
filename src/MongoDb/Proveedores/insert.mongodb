@@ -1,13 +1,34 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.trucks.insertOne({
+    id_truck: ObjectId(),
+    brand_name: "Volvo",
+    fuel_type: "Diesel",
+    tank_capacity: 200,
+    width: "2.5",
+    height: "3.2",
+    description: "Camión de carga pesada",
+    quantity: 5,
+    trips: 10,
+    trip_price: 1500
 })
+//  "$oid": "65480e0f04395c2141aadb3b"
+
+use("Aridos_Manolo")
+
+db.suppliers.insertOne({
+    id_supplier: new ObjectId(),
+    first_name: "Juan",
+    last_name: "Perez",
+    email: "juan.perez@example.com",
+    age: 35,
+    phone: 123456789,
+    isSingle: true,
+    service: "Transportation",
+    address: "123 Main Street",
+    payment_terms: "Net 30",
+    createdAt: new Date(),
+    id_truck: ObjectId("65480e0f04395c2141aadb3b"),
+    id_product: ObjectId("65480f847ad8f0986b3a19f9")
+})
+//  "$oid":"6548125a9fe604950caa6676"

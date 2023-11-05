@@ -1,13 +1,29 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.stadistics.insertOne({
+    id_stadistic: new ObjectId(),
+    id_income: ObjectId("65481af2a3993b4959c5237a"),
+    id_expense: ObjectId("65481b062350844f4e633df2")
 })
+
+//  "$oid": "65481b4f4524add546f75a4d"
+
+use("Aridos_Manolo")
+
+db.income.insertOne({
+    id_income: new ObjectId(),
+    createdAt: new Date(),
+    id_customer: ObjectId("654818d10678f4cc7d1f743d")
+})
+//  "$oid": "65481af2a3993b4959c5237a"
+
+use("Aridos_Manolo")
+
+db.expenses.insert({
+    id_expense: new ObjectId(), 
+    createdAt: new Date(), 
+    id_supplier: ObjectId("6548125a9fe604950caa6676") 
+})
+//   "$oid": "65481b062350844f4e633df2"
+
+

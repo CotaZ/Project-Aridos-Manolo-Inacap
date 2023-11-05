@@ -16,8 +16,6 @@ db.createCollection("maps", {
                 id_customer: {
                     bsonType: 'objectId',
                     description: "'id_customer' must be a valid ObjectId and is required",
-                    foreignField: 'id_customer',
-                    ref: 'customers'
                 },
             }
         }

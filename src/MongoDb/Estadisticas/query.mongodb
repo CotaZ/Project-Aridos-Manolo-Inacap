@@ -1,3 +1,11 @@
 use("Aridos_Manolo")
 
-db.users.find()
+db.stadistics.find()
+
+use("Aridos_Manolo")
+
+db.expenses.find()
+
+use("Aridos_Manolo")
+
+db.income.find()

@@ -31,8 +31,6 @@ db.createCollection("customers", {
                 id_address: {
                     bsonType: 'objectId',
                     description: "'id_address' must be a valid ObjectId and is required",
-                    foreignField: 'id_address',
-                    ref: 'addresses'
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.

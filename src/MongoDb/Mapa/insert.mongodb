@@ -1,13 +1,18 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.addresses.insertOne({
+    id_address: ObjectId(),
+    address: "123 Main St",
+    latitude: 37.7749,
+    longitude: -122.4194,
+    street_name: "Main St",
+    street_number: 123,
+    city: "San Francisco",
+    region: "California"
+})
+//  "$oid": "6548146feb869a7fbfe4547f"
+
+db.maps.insertOne({
+    id_map: new ObjectId(),
+    id_customer: ObjectId()
 })

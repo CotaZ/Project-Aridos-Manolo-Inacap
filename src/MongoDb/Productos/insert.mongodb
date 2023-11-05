@@ -1,18 +1,15 @@
 use("Aridos_Manolo")
 
 db.products.insertOne({
-    product: 'Cemento',
-    brand: 'Melon',
-    quantity: 10,
+    id_product: ObjectId(),
+    name: "Arena",
+    description: "Arena de río",
+    price: 50,
+    qty: 100,
     isSingle: true,
     createdAt: new Date(),
-    measurements: {
-        length: 47.5,
-        width: 70,
-        unit: 'cm'
-    },
-    weight: {
-        qty: 45,
-        unit: 'kg'
-    }
+    measurement: "metro cúbico",
+    weight: 1000,
+    type_of_weight: "kg"
 })
+//  "$oid": "65480f847ad8f0986b3a19f9"

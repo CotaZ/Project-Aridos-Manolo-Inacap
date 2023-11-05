@@ -1,8 +1,8 @@
 use("Aridos_Manolo")
 
-db.Suppliers.drop()
+db.suppliers.drop()
 
-db.createCollection("Suppliers", {
+db.createCollection("suppliers", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
@@ -59,21 +59,20 @@ db.createCollection("Suppliers", {
                 id_truck: {
                     bsonType: 'objectId',
                     description: "'id_truck' must be a valid ObjectId and is required",
-                    foreignField: 'id_truck',
-                    ref: 'trucks'
                 },
                 id_product: {
                     bsonType: 'objectId',
                     description: "'id_product' must be a valid ObjectId and is required",
-                    foreignField: 'id_product',
-                    ref: 'products'
                 }
             }
         }    
     }
 })
 
-db.createCollection("Trucks", {
+use("Aridos_Manolo")
+
+db.trucks.drop()
+db.createCollection("trucks", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',

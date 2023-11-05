@@ -1,13 +1,11 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
-    password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+db.customers.insertOne({
+    id_customer: new ObjectId(), 
+    name: "Juana", 
+    last_name: "Péreza", 
+    email: "juan.pereza@example.com", 
+    phone: 123456789, 
+    id_address: ObjectId("6548146feb869a7fbfe4547f") 
 })
+//  "$oid": "654818d10678f4cc7d1f743d"
