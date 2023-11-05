@@ -1,0 +1,91 @@
+use("Aridos_Manolo")
+
+db.stadistics.drop()
+
+db.createCollection("stadistics", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_stadistic', 'id_income', 'id_expense'],
+            additionalProperties: true,
+            properties: {
+                id_stadistic: {
+                    bsonType: 'objectId',
+                    description: "'id_stadistic' must be a string and is required"
+                },
+                id_income: {
+                    bsonType: 'objectId',
+                    description: "'id_income' must be a valid ObjectId and is required",
+                    foreignField: 'id_income',
+                    ref: 'income'
+                },
+                id_expense: {
+                    bsonType: 'objectId',
+                    description: "'id_expense' must be a valid ObjectId and is required",
+                    foreignField: 'id_expense',
+                    ref: 'expenses'
+                }
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.income.drop()
+
+db.createCollection("income", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_income', 'createdAt', 'id_customer'],
+            additionalProperties: true,
+            properties: {
+                id_income: {
+                    bsonType: 'objectId',
+                    description: "'id_income' must be a string and is required"
+                },
+                createdAt: {
+                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    description: "'createdAt' must be a date and is required"
+                },
+                id_customer: {
+                    bsonType: 'objectId',
+                    description: "'id_customer' must be a valid ObjectId and is required",
+                    foreignField: 'id_customer',
+                    ref: 'customers'
+                },
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.expenses.drop()
+
+db.createCollection("expenses", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_expense', 'id_createdAt', 'id_supplier'],
+            additionalProperties: true,
+            properties: {
+                id_stadistic: {
+                    bsonType: 'objectId',
+                    description: "'id_stadistic' must be a string and is required"
+                },
+                createdAt: {
+                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    description: "'createdAt' must be a date and is required"
+                },
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required",
+                    foreignField: 'id_supplier',
+                    ref: 'suppliers'
+                }
+            }
+        }
+    }
+})

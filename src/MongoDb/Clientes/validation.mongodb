@@ -1,0 +1,45 @@
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'customers',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_customer', 'name', 'last_name', 'email', 'phone', 'id_address'],
+            additionalProperties: true,
+            properties: {
+                name: {
+                    bsonType: 'string',
+                    description: "'name' must be a string and is required"
+                },
+                last_name: {
+                    bsonType: 'string',
+                    description: "'lastname' must be a string and is required"
+                },
+                email: {
+                    bsonType: 'string',
+                    description: "'email' must be a string and is required",
+                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                },
+                phone: {
+                    bsonType: 'number',
+                    minimum: 100000000,
+                    maximum: 999999999,
+                    description: "'phone' must be a string and is required"
+                },
+                id_address: {
+                    bsonType: 'objectId',
+                    description: "'id_address' must be a valid ObjectId and is required",
+                    foreignField: 'id_address',
+                    ref: 'addresses'
+                },
+                createdAt: {
+                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    description: "'createdAt' must be a date and is required"
+                }
+            }
+        }
+    }
+})

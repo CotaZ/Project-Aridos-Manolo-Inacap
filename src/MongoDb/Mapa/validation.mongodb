@@ -3,49 +3,72 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'users',
+    collMod: 'maps',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['email', 'password', 'role'],
-            additionalProperties: true, //false, estructura para no agregar mas campos de los que no se escribieron la collection
+            required: ['id_map', 'id_customer'],
+            additionalProperties: true,
             properties: {
-                name: {
+                id_map: {
+                    bsonType: 'objectId',
+                    description: "'id_map' must be a string and is required"
+                },
+                id_customer: {
+                    bsonType: 'objectId',
+                    description: "'id_customer' must be a valid ObjectId and is required",
+                    foreignField: 'id_customer',
+                    ref: 'customers'
+                },
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'addresses',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_address', 'address', 'latitude', 'longitude', 'street_name', 'street_number', 'city', 'region'],
+            additionalProperties: true,
+            properties: {
+                id_address: {
+                    bsonType: 'objectId',
+                    description: "'id_address' must be a string and is required"
+                },
+                address: {
                     bsonType: 'string',
-                    description: "'name' must be a string and is required"
+                    description: "'address' must be a string and is required"
                 },
-                last_name: {
+                latitude: {
+                    bsonType: 'double',
+                    description: "'latitude' must be a string and is required"
+                },
+                longitude: {
+                    bsonType: 'double',
+                    description: "'longitude' must be a string and is required"
+                },
+                street_name: {
                     bsonType: 'string',
-                    description: "'lastname' must be a string and is required"
+                    description: "'street_name' must be a string and is required"
                 },
-                email: {
+                street_number: {
+                    bsonType: 'int',
+                    description: "'street_number' must be a string and is required"
+                },
+                city: {
                     bsonType: 'string',
-                    description: "'email' must be a string and is required",
-                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                    description: "'city' must be a string and is required"
                 },
-                password: {
+                region: {
                     bsonType: 'string',
-                    description: "'password' must be a string and is required",
-                    pattern: "^.{16,40}$"
-                    // "^": Indica que la coincidencia debe comenzar desde el principio de la cadena.
-                    // ".": Representa cualquier carácter (excepto una nueva línea).
-                    // "{16,40}": Es una cuantificador de repetición que especifica que el patrón anterior (el punto ".") debe repetirse al menos 16 veces y máximo 40 veces.
+                    description: "'region' must be a string and is required"
                 },
-                age: {
-                    bsonType: 'number',
-                    minimum: 18,
-                    maximum: 99
-                },
-                isSingle: {
-                    bsonType: 'bool'
-                },
-                role: {
-                    enum: ['customer', 'seller', 'admin']
-                },
-                createdAt: {
-                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
-                    description: "'createdAt' must be a date and is required"
-                }
             }
         }
     }

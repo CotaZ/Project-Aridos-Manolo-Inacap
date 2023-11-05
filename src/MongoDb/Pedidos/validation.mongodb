@@ -3,44 +3,47 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'users',
+    collMod: 'orders',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['email', 'password', 'role'],
-            additionalProperties: true, //false, estructura para no agregar mas campos de los que no se escribieron la collection
+            required: ['id_order', 'order', 'order_date', 'order_time', 'order_status', 'revenue', 'id_product', 'id_customer'],
+            additionalProperties: true,
             properties: {
-                name: {
-                    bsonType: 'string',
-                    description: "'name' must be a string and is required"
+                id_order: {
+                    bsonType: 'objectId',
+                    description: "'id_order' must be a string and is required"
                 },
-                last_name: {
+                order: {
                     bsonType: 'string',
                     description: "'lastname' must be a string and is required"
                 },
-                email: {
+                order_date: {
+                    bsonType: 'date',
+                    description: "'order_date' must be a string and is required"
+                },
+                order_time: {
                     bsonType: 'string',
-                    description: "'email' must be a string and is required",
-                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                    description: "'order_time' must be a string and is required"
                 },
-                password: {
-                    bsonType: 'string',
-                    description: "'password' must be a string and is required",
-                    pattern: "^.{16,40}$"
-                    // "^": Indica que la coincidencia debe comenzar desde el principio de la cadena.
-                    // ".": Representa cualquier carácter (excepto una nueva línea).
-                    // "{16,40}": Es una cuantificador de repetición que especifica que el patrón anterior (el punto ".") debe repetirse al menos 16 veces y máximo 40 veces.
+                order_status: {
+                    enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
                 },
-                age: {
-                    bsonType: 'number',
-                    minimum: 18,
-                    maximum: 99
+                revenue: {
+                    bsonType: 'double',
+                    description: "'revenue' must be a string and is required"
                 },
-                isSingle: {
-                    bsonType: 'bool'
+                id_product: {
+                    bsonType: 'objectId',
+                    description: "'id_product' must be a valid ObjectId and is required",
+                    foreignField: 'id_product',
+                    ref: 'products'
                 },
-                role: {
-                    enum: ['customer', 'seller', 'admin']
+                id_customer: {
+                    bsonType: 'objectId',
+                    description: "'id_customer' must be a valid ObjectId and is required",
+                    foreignField: 'id_customer',
+                    ref: 'customers'
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.

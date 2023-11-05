@@ -3,44 +3,50 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'users',
+    collMod: 'requests',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['email', 'password', 'role'],
-            additionalProperties: true, //false, estructura para no agregar mas campos de los que no se escribieron la collection
+            required: ['id_request', 'request', 'date', 'time', 'cost', 'id_supplier', 'id_product', 'id_truck'],
+            additionalProperties: true,
             properties: {
-                name: {
+                id_request: {
                     bsonType: 'string',
-                    description: "'name' must be a string and is required"
+                    description: "'id_request' must be a string and is required"
                 },
-                last_name: {
+                request: {
                     bsonType: 'string',
-                    description: "'lastname' must be a string and is required"
+                    description: "'request' must be a string and is required"
                 },
-                email: {
+                date: {
                     bsonType: 'string',
-                    description: "'email' must be a string and is required",
-                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                    description: "'date' must be a string and is required"
                 },
-                password: {
+                time: {
                     bsonType: 'string',
-                    description: "'password' must be a string and is required",
-                    pattern: "^.{16,40}$"
-                    // "^": Indica que la coincidencia debe comenzar desde el principio de la cadena.
-                    // ".": Representa cualquier carácter (excepto una nueva línea).
-                    // "{16,40}": Es una cuantificador de repetición que especifica que el patrón anterior (el punto ".") debe repetirse al menos 16 veces y máximo 40 veces.
+                    description: "'time' must be a string and is required"
                 },
-                age: {
+                cost: {
                     bsonType: 'number',
-                    minimum: 18,
-                    maximum: 99
+                    description: "'cost' must be a string and is required"
                 },
-                isSingle: {
-                    bsonType: 'bool'
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required",
+                    foreignField: 'id_supplier',
+                    ref: 'suppliers'
                 },
-                role: {
-                    enum: ['customer', 'seller', 'admin']
+                id_product: {
+                    bsonType: 'objectId',
+                    description: "'id_product' must be a valid ObjectId and is required",
+                    foreignField: 'id_product',
+                    ref: 'products'
+                },
+                id_truck: {
+                    bsonType: 'objectId',
+                    description: "'id_truck' must be a valid ObjectId and is required",
+                    foreignField: 'id_truck',
+                    ref: 'trucks'
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.

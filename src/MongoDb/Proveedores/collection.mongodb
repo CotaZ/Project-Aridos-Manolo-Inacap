@@ -27,7 +27,6 @@ db.createCollection("Suppliers", {
                     description: "'email' must be a string and is required",
                     pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
                 },
-                },
                 age: {
                     bsonType: 'number',
                     minimum: 18,
@@ -72,7 +71,7 @@ db.createCollection("Suppliers", {
             }
         }    
     }
-)
+})
 
 db.createCollection("Trucks", {
     validator: {
