@@ -3,41 +3,90 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'customers',
+    collMod: 'stadistics',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['id_customer', 'name', 'last_name', 'email', 'phone', 'id_address'],
+            required: ['id_stadistic', 'id_income', 'id_expense'],
             additionalProperties: true,
             properties: {
-                name: {
-                    bsonType: 'string',
-                    description: "'name' must be a string and is required"
-                },
-                last_name: {
-                    bsonType: 'string',
-                    description: "'lastname' must be a string and is required"
-                },
-                email: {
-                    bsonType: 'string',
-                    description: "'email' must be a string and is required",
-                    pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
-                },
-                phone: {
-                    bsonType: 'number',
-                    minimum: 100000000,
-                    maximum: 999999999,
-                    description: "'phone' must be a string and is required"
-                },
-                id_address: {
+                id_stadistic: {
                     bsonType: 'objectId',
-                    description: "'id_address' must be a valid ObjectId and is required",
-                    foreignField: 'id_address',
-                    ref: 'addresses'
+                    description: "'id_stadistic' must be a string and is required"
+                },
+                id_income: {
+                    bsonType: 'objectId',
+                    description: "'id_income' must be a valid ObjectId and is required",
+                    foreignField: 'id_income',
+                    ref: 'income'
+                },
+                id_expense: {
+                    bsonType: 'objectId',
+                    description: "'id_expense' must be a valid ObjectId and is required",
+                    foreignField: 'id_expense',
+                    ref: 'expenses'
+                }
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'income',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_income', 'createdAt', 'id_customer'],
+            additionalProperties: true,
+            properties: {
+                id_income: {
+                    bsonType: 'objectId',
+                    description: "'id_income' must be a string and is required"
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
                     description: "'createdAt' must be a date and is required"
+                },
+                id_customer: {
+                    bsonType: 'objectId',
+                    description: "'id_customer' must be a valid ObjectId and is required",
+                    foreignField: 'id_customer',
+                    ref: 'customers'
+                },
+            }
+        }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'expenses',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_expense', 'id_createdAt', 'id_supplier'],
+            additionalProperties: true,
+            properties: {
+                id_stadistic: {
+                    bsonType: 'objectId',
+                    description: "'id_stadistic' must be a string and is required"
+                },
+                createdAt: {
+                    bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
+                    description: "'createdAt' must be a date and is required"
+                },
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required",
+                    foreignField: 'id_supplier',
+                    ref: 'suppliers'
                 }
             }
         }
