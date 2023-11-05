@@ -1,13 +1,58 @@
 use("Aridos_Manolo")
 
-db.users.insertOne({
-    name: "Leonel",
-    last_name: "Acosta",
-    email: "leonel.acosta@aridosmanolo.com",
+db.roles.insertOne({
+    id_rol: new ObjectId(), // Esto genera un nuevo ObjectId personalizado
+    role: "admin"
+})
+//  "$oid": "65480148f0b9460a2acfe828"
+
+use("Aridos_Manolo")
+
+db.roles.insertOne({
+    id_rol: new ObjectId(), // Esto genera un nuevo ObjectId personalizado
+    role: "customer"
+})
+//  "$oid": "65480292f60e821f7adc2755"
+
+use("Aridos_Manolo")
+
+db.sexs.insertOne({
+        id_sex: new ObjectId(), // Esto genera un nuevo ObjectId personalizado
+        sex: "male"
+})
+//  "$oid": "6548021b25f50218feebe349"
+
+use("Aridos_Manolo")
+
+db.sexs.insertOne({
+        id_sex: new ObjectId(), // Esto genera un nuevo ObjectId personalizado
+        sex: "female"
+})
+//  "$oid": "65480232a409be780e8c0ea9"
+
+use("Aridos_Manolo")
+
+db.register_users.insertOne({
+    id_register_user: new ObjectId(),
+    name: "John",
+    last_name: "Doe",
+    email: "john.doe@example.com",
+    date_of_birth: "1995-09-09",
     password: "PasswordSegura123456",
-    role: "admin",
-    isSingle: true,
-    age: 20,
-    social_accounts: ['instagram', 'facebook','x','tiktok'],
-    createdAt: new Date() // Establece la marca de tiempo actual.
+    age: 25,
+    isSingle: false,
+    createdAt: new Date(),
+    status: "active",
+    country: "United States",
+    expiration_date: new Date("2024-12-31T00:00:00Z"),
+    id_sex: ObjectId("6548021b25f50218feebe349"),
+    id_rol: ObjectId("65480148f0b9460a2acfe828")
+})
+// "$oid": "654808e78d7b0d0e41b6a9c8"
+
+use('Aridos_Manolo')
+db.users_roles.insertOne({
+    id_user_rol: new ObjectId(),
+    id_rol: ObjectId("65480148f0b9460a2acfe828"),
+    id_register_user: ObjectId("654808e78d7b0d0e41b6a9c8")
 })

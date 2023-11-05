@@ -7,26 +7,29 @@ db.runCommand({
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['id_register_user','name', 'last_name', 'email', 'date_of_birth','age', 'expiration_date', 'status', 'country', 'id_sex', 'id_rol'],
+            required: ['id_register_user', 'name', 'last_name', 'email', 'date_of_birth', 'age', 'expiration_date', 'status', 'country', 'id_sex', 'id_rol'],
             additionalProperties: true,
             properties: {
                 id_register_user: {
                     bsonType: 'objectId',
-                    description: "'id_register_user' must be a valid ObjectId and is required"
-
+                    description: "'id_register_user' must be a valid ObjectId and is required",
                 },   
                 name: {
                     bsonType: 'string',
                     description: "'name' must be a string and is required"
                 },
-                last_name: {
+                last_name: { // Corregido de 'lastname' a 'last_name'
                     bsonType: 'string',
-                    description: "'lastname' must be a string and is required"
+                    description: "'last_name' must be a string and is required"
                 },
                 email: {
                     bsonType: 'string',
                     description: "'email' must be a string and is required",
                     pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
+                },
+                date_of_birth: {
+                    bsonType: 'string',
+                    description: "'date_of_birth' must be a string and is required"
                 },
                 password: {
                     bsonType: 'string',
@@ -50,23 +53,19 @@ db.runCommand({
                 },
                 country: {
                     bsonType: 'string',
-                    description: "'lastname' must be a string and is required"
+                    description: "'country' must be a string and is required" // Corregido de 'lastname' a 'country'
                 },
                 expiration_date: {
-                    bsonType: 'date', // insert{"expiration_date": ISODate("2023-12-31T00:00:00Z")
+                    bsonType: 'date',
                     description: "'expiration_date' must be a date and is required"
-                },
-                id_sex: {
-                    bsonType: 'objectId',
-                    description: "'id_sex' must be a valid ObjectId and is required",
-                    foreignField: 'id_sex',
-                    ref: 'sexs'
                 },
                 id_rol: {
                     bsonType: 'objectId',
                     description: "'id_rol' must be a valid ObjectId and is required",
-                    foreignField: 'id_rol',
-                    ref: 'roles'
+                },
+                id_sex: {
+                    bsonType: 'objectId',
+                    description: "'id_sex' must be a valid ObjectId and is required",
                 },
             }
         }
@@ -87,20 +86,15 @@ db.runCommand({
             properties: { 
                 id_user_rol: {
                     bsonType: 'objectId',
-                    description: "'id_user_rol' must be a valid ObjectId and is required"
-
+                    description: "'id_user_rol' must be a valid ObjectId and is required",
                 }, 
                 id_rol: {
                     bsonType: 'objectId',
-                    description: "'id_rol' must be a valid ObjectId and is required",
-                    foreignField: 'id_rol',
-                    ref: 'roles'
+                    description: "'id_rol' must be a valid ObjectId and is required"
                 },
                 id_register_user: {
                     bsonType: 'objectId',
-                    description: "'id_register_user' must be a valid ObjectId and is required",
-                    foreignField: 'id_register_user',
-                    ref: 'register_users'
+                    description: "'id_register_user' must be a valid ObjectId and is required"
                 },
             }
         }
@@ -121,7 +115,7 @@ db.runCommand({
             properties: { 
                 id_sex: {
                     bsonType: 'objectId',
-                    description: "'id_sex' must be a valid ObjectId and is required"
+                    description: "'id_sex' must be a valid ObjectId and is required",
                 },
                 sex: {
                     enum: ['male', 'female']
@@ -143,9 +137,9 @@ db.runCommand({
             required: ['id_rol','role'],
             additionalProperties: true,
             properties: { 
-                id_role: {
+                id_rol: {
                     bsonType: 'objectId',
-                    description: "'id_rol' must be a valid ObjectId and is required"
+                    description: "'id_rol' must be a valid ObjectId and is required",
                 },
                 role: {
                     enum: ['admin', 'customer', 'developer']

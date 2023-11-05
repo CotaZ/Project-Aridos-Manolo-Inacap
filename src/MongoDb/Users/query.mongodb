@@ -1,5 +1,19 @@
 use("Aridos_Manolo")
+db.roles.find("role")
 
-db.users.find()
+use("Aridos_Manolo")
+db.sexs.find()
 
-//modelo de datos
+use("Aridos_Manolo")
+db.register_users.aggregate([
+  {
+    $lookup: {
+      from: "users_roles",
+      localField: "_id",
+      foreignField: "id_register_user",
+      as: "user_roles"
+    }
+  }
+])
+
+
