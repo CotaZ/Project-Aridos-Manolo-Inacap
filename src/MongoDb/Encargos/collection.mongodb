@@ -6,11 +6,11 @@ db.createCollection("requests", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['id_request', 'request', 'date', 'time', 'cost', 'id_supplier', 'id_product', 'id_truck'],
+            required: ['id_request', 'request', 'date', 'time', 'cost', 'id_supplier'],
             additionalProperties: true,
             properties: {
                 id_request: {
-                    bsonType: 'string',
+                    bsonType: 'objectId',
                     description: "'id_request' must be a string and is required"
                 },
                 request: {
@@ -29,21 +29,13 @@ db.createCollection("requests", {
                     bsonType: 'number',
                     description: "'cost' must be a string and is required"
                 },
-                id_supplier: {
-                    bsonType: 'objectId',
-                    description: "'id_supplier' must be a valid ObjectId and is required",
-                },
-                id_product: {
-                    bsonType: 'objectId',
-                    description: "'id_product' must be a valid ObjectId and is required",
-                },
-                id_truck: {
-                    bsonType: 'objectId',
-                    description: "'id_truck' must be a valid ObjectId and is required",
-                },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
                     description: "'createdAt' must be a date and is required"
+                },
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required",
                 }
             }
         }

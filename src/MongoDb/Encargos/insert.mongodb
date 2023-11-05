@@ -2,12 +2,12 @@ use("Aridos_Manolo")
 
 db.requests.insertOne({
     id_request: new ObjectId(),
-    request: "Pedido de arena", 
-    date: "2024-11-05", 
-    time: "10:00 AM", 
-    cost: 500, 
-    id_supplier: ObjectId("6548125a9fe604950caa6675"), 
-    id_product: ObjectId("65480f847ad8f0986b3a19f8"), 
-    id_truck: ObjectId("65480e0f04395c2141aadb3a"),
+    request: "Solicitud de materiales",
+    date: "2022-10-10",
+    time: "14:00",
+    cost: 100.50,
     createdAt: new Date(),
+    id_supplier: ObjectId("65482167425973f0d48dd580"),
 })
+
+//  "$oid": "6548278350b7c09f932de0aa"

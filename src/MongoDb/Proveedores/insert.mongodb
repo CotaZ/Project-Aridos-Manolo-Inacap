@@ -4,15 +4,16 @@ db.trucks.insertOne({
     id_truck: ObjectId(),
     brand_name: "Volvo",
     fuel_type: "Diesel",
-    tank_capacity: 200,
-    width: "2.5",
-    height: "3.2",
+    tank_capacity: 300,
+    width: "2.0",
+    height: "3.0",
     description: "Camión de carga pesada",
-    quantity: 5,
-    trips: 10,
-    trip_price: 1500
+    quantity: 2,
+    trips: 15,
+    trip_price: 1000
 })
 //  "$oid": "65480e0f04395c2141aadb3b"
+//  "$oid": "65481fd5b3a91bf73bb72762"
 
 use("Aridos_Manolo")
 
@@ -32,3 +33,21 @@ db.suppliers.insertOne({
     id_product: ObjectId("65480f847ad8f0986b3a19f9")
 })
 //  "$oid":"6548125a9fe604950caa6676"
+
+use("Aridos_Manolo")
+
+db.suppliers.insertOne({
+    id_supplier: new ObjectId(),
+    first_name: "Camila",
+    last_name: "Perez",
+    email: "cami.perez@example.com",
+    age: 23,
+    phone: 123456789,
+    isSingle: true,
+    service: "Transportation",
+    address: "223 Main Street",
+    payment_terms: "Net 40",
+    createdAt: new Date(),
+    id_truck: ObjectId("65481fd5b3a91bf73bb72761"),
+    id_product: ObjectId("65482046d7c47ffcf97123d4")
+})

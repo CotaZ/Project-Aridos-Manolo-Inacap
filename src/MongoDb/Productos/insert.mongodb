@@ -1,15 +1,16 @@
 use("Aridos_Manolo")
 
 db.products.insertOne({
-    id_product: ObjectId(),
-    name: "Arena",
-    description: "Arena de río",
-    price: 50,
-    qty: 100,
+    id_product: new ObjectId(),
+    name: "Arido grueso",
+    description: "Piedras de lago",
+    price: 40,
+    qty: 200,
     isSingle: true,
     createdAt: new Date(),
     measurement: "metro cúbico",
-    weight: 1000,
+    weight: 800,
     type_of_weight: "kg"
 })
 //  "$oid": "65480f847ad8f0986b3a19f9"
+//  "$oid": "65482046d7c47ffcf97123d5"
