@@ -6,9 +6,14 @@ db.createCollection("Suppliers", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['first_name', 'last_name', 'email', 'age', 'phone', 'service', 'address', 'payment_terms','id_truck','id_product'],
+            required: ['id_supplier','first_name', 'last_name', 'email', 'age', 'phone', 'service', 'address', 'payment_terms','id_truck','id_product'],
             additionalProperties: true,
             properties: {
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required"
+
+                },
                 first_name: {
                     bsonType: 'string',
                     description: "'name' must be a string and is required"
@@ -73,9 +78,13 @@ db.createCollection("Trucks", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['brand_name', 'fuel_type', 'tank_capacity', 'width', 'height', 'description', 'quantity', 'trips', 'trip_price'],
+            required: ['id_truck','brand_name', 'fuel_type', 'tank_capacity', 'width', 'height', 'description', 'quantity', 'trips', 'trip_price'],
             additionalProperties: true,
             properties: {
+                id_truck: {
+                    bsonType: 'objectId',
+                    description: "'id_truck' must be a valid ObjectId and is required"
+                },
                 brand_name: {
                     bsonType: 'string',
                     description: "'brand_name' must be a string and is required"

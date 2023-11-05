@@ -1,12 +1,12 @@
 use("Aridos_Manolo")
 
-db.users.drop()
+db.orders.drop()
 
-db.createCollection("users", {
+db.createCollection("orders", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['email', 'password', 'role'],
+            required: ['id_order', 'order', 'order_date', 'order_time', 'order_status', 'revenue' ],
             additionalProperties: true,
             properties: {
                 name: {

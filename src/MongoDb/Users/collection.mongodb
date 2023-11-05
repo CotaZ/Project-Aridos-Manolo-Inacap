@@ -5,9 +5,14 @@ db.createCollection("register_users", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['name', 'last_name', 'email', 'date_of_birth','age', 'expiration_date', 'status', 'country', 'id_sex', 'id_rol'],
+            required: ['id_register_user','name', 'last_name', 'email', 'date_of_birth','age', 'expiration_date', 'status', 'country', 'id_sex', 'id_rol'],
             additionalProperties: true,
             properties: {
+                id_register_user: {
+                    bsonType: 'objectId',
+                    description: "'id_register_user' must be a valid ObjectId and is required"
+
+                },   
                 name: {
                     bsonType: 'string',
                     description: "'name' must be a string and is required"
@@ -74,9 +79,27 @@ db.createCollection("users_roles", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: [],
+            required: ['id_user_rol','id_rol', 'id_register_user'],
             additionalProperties: true,
-            properties: { }
+            properties: { 
+                id_user_rol: {
+                    bsonType: 'objectId',
+                    description: "'id_user_rol' must be a valid ObjectId and is required"
+
+                }, 
+                id_rol: {
+                    bsonType: 'objectId',
+                    description: "'id_rol' must be a valid ObjectId and is required",
+                    foreignField: 'id_rol',
+                    ref: 'roles'
+                },
+                id_register_user: {
+                    bsonType: 'objectId',
+                    description: "'id_register_user' must be a valid ObjectId and is required",
+                    foreignField: 'id_register_user',
+                    ref: 'register_users'
+                },
+            }
         }
     }
 })
@@ -89,9 +112,14 @@ db.createCollection("sexs", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ["sex"],
+            required: ['id_sex',"sex"],
             additionalProperties: true,
             properties: { 
+                id_sex: {
+                    bsonType: 'objectId',
+                    description: "'id_sex' must be a valid ObjectId and is required"
+
+                },
                 sex: {
                     enum: ['male', 'female']
                 },
@@ -108,9 +136,13 @@ db.createCollection("roles", {
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: [],
+            required: ['id_rol','role'],
             additionalProperties: true,
             properties: { 
+                id_role: {
+                    bsonType: 'objectId',
+                    description: "'id_rol' must be a valid ObjectId and is required"
+                },
                 role: {
                     enum: ['admin', 'customer', 'developer']
                 },

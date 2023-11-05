@@ -3,14 +3,19 @@ use("Aridos_Manolo")
 db.getCollectionInfos()
 
 db.runCommand({
-    collMod: 'users',
+    collMod: 'Suppliers',
     validator: {
         $jsonSchema: {
             bsonType: 'object',
-            required: ['email', 'password', 'role'],
-            additionalProperties: true, //false, estructura para no agregar mas campos de los que no se escribieron la collection
+            required: ['id_supplier','first_name', 'last_name', 'email', 'age', 'phone', 'service', 'address', 'payment_terms','id_truck','id_product'],
+            additionalProperties: true,
             properties: {
-                name: {
+                id_supplier: {
+                    bsonType: 'objectId',
+                    description: "'id_supplier' must be a valid ObjectId and is required"
+
+                },
+                first_name: {
                     bsonType: 'string',
                     description: "'name' must be a string and is required"
                 },
@@ -23,28 +28,106 @@ db.runCommand({
                     description: "'email' must be a string and is required",
                     pattern: "^[A-Za-z\\d.-]{1,}@[A-Za-z\\d.-]{1,}[.]{1}[A-Za-z\\d.-]{1,}$"
                 },
-                password: {
-                    bsonType: 'string',
-                    description: "'password' must be a string and is required",
-                    pattern: "^.{16,40}$"
-                    // "^": Indica que la coincidencia debe comenzar desde el principio de la cadena.
-                    // ".": Representa cualquier carácter (excepto una nueva línea).
-                    // "{16,40}": Es una cuantificador de repetición que especifica que el patrón anterior (el punto ".") debe repetirse al menos 16 veces y máximo 40 veces.
                 },
                 age: {
                     bsonType: 'number',
                     minimum: 18,
                     maximum: 99
                 },
+                phone: {
+                    bsonType: 'number',
+                    minimum: 100000000,
+                    maximum: 999999999
+                },
                 isSingle: {
                     bsonType: 'bool'
                 },
-                role: {
-                    enum: ['customer', 'seller', 'admin']
+                service: {
+                    bsonType: 'string',
+                    description: "'service' must be a string and is required"
+                },
+                address: {
+                    bsonType: 'string',
+                    description: "'address' must be a string and is required"
+                },
+                payment_terms: {
+                    bsonType: 'string',
+                    description: "'payment_terms' must be a string and is required"            
                 },
                 createdAt: {
                     bsonType: 'date', // Utiliza el tipo 'date' para almacenar la hora de creación.
                     description: "'createdAt' must be a date and is required"
+                },
+                id_truck: {
+                    bsonType: 'objectId',
+                    description: "'id_truck' must be a valid ObjectId and is required",
+                    foreignField: 'id_truck',
+                    ref: 'trucks'
+                },
+                id_product: {
+                    bsonType: 'objectId',
+                    description: "'id_product' must be a valid ObjectId and is required",
+                    foreignField: 'id_product',
+                    ref: 'products'
+                }
+            }
+    }
+})
+
+use("Aridos_Manolo")
+
+db.getCollectionInfos()
+db.runCommand({
+    collMod: 'Trucks',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['id_truck','brand_name', 'fuel_type', 'tank_capacity', 'width', 'height', 'description', 'quantity', 'trips', 'trip_price'],
+            additionalProperties: true,
+            properties: {
+                id_truck: {
+                    bsonType: 'objectId',
+                    description: "'id_truck' must be a valid ObjectId and is required"
+
+                },
+                brand_name: {
+                    bsonType: 'string',
+                    description: "'brand_name' must be a string and is required"
+                },
+                fuel_type: {
+                    bsonType: 'string',
+                    description: "'fuel_type' must be a string and is required"
+                },
+                tank_capacity: {
+                    bsonType: 'number',
+                    minimum: 1,
+                    maximum: 999,
+                    description: "'tank_capacity' must be a number and is required"
+                },
+                width: {
+                    bsonType: 'string',
+                    description: "'width' must be a number and is required"
+                },
+                height: {
+                    bsonType: 'string',
+                    description: "'height' must be a number and is required"
+                },
+                description: {
+                    bsonType: 'string',
+                    description: "'description' must be a string and is required"
+                },
+                quantity: {
+                    bsonType: 'number',
+                    minimum: 1,
+                    maximum: 999
+                },
+                trips: {
+                    bsonType: 'number',
+                    description: "'trips' must be a number and is required"
+                },
+                trip_price: {
+                    bsonType: 'number',
+                    description: "'trip_price' must be a number and is required"
                 }
             }
         }
